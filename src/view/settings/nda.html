@@ -1,0 +1,28 @@
+<form name="ndaForm" class="form-horizontal" data-ng-controller="NdaCtrl">
+	<fieldset><legend>Non-Disclosure Agreement (NDA)</legend></fieldset>
+	<hr>
+	
+    <div class="control-group">
+        <label class="control-label">Edit</label>
+	    <div class="controls">
+		    <textarea class="input-block-level" rows="10" data-ng-model="nda.nda_details" placeholder="" required></textarea>
+			<!--<span class="pull-right">{{nda.nda_details.length}}</span>-->
+	    </div>
+	</div>
+	
+	<hr>
+	
+	<div class="control-group">
+        <label class="control-label">Preview</label>
+	    <div class="controls">
+	    	<div data-ng-bind-html-unsafe="markdown(nda.nda_details)"></div>
+	    </div>
+	</div>
+	
+	<hr>
+	<div class="control-group">
+      	<div class="controls">
+	      	<button class="btn" data-ng-click="saveNDA()" data-ng-disabled="ndaForm.$invalid">Save changes</button>
+      	</div>
+	</div>
+</form>

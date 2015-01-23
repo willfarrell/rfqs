@@ -1,0 +1,17 @@
+<table class="table table-striped table-bordered">
+  <!--<thead>
+  <tr>
+    <th>Project</th>
+    <th>Description</th>
+    <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
+  </tr>
+  </thead>-->
+  <tbody>
+  <tr data-ng-repeat="tender in tenders | filter:search | orderBy:'close_timestamp'">
+    <td><img data-ng-src="{{settings.server}}/img/tender/{{tender.tender_ID}}.png" width="50" height="50" /></td>
+    <td><a data-ng-href="{{settings.server}}/#/tender/view/{{tender.tender_ID}}">{{tender.title}}</a></td>
+    <td>{{formatCountdown(tender.close_timestamp)}} remaining</td>
+  </tr>
+  <tr data-ng-hide="tenders.length"><td>No Tenders</td></tr>
+  </tbody>
+</table>

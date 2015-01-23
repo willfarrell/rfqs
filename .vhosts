@@ -1,0 +1,14 @@
+<VirtualHost *:8888>
+    ServerName test.tenders
+    DocumentRoot __DIR__
+</VirtualHost>
+
+<VirtualHost *:8888>
+    ServerName app.tenders
+    DocumentRoot __DIR__/src
+</VirtualHost>
+
+<VirtualHost *:8888>
+    ServerName build.app.tenders
+    DocumentRoot __DIR__/dist
+</VirtualHost>

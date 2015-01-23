@@ -1,0 +1,19 @@
+/* TEAM */
+	Lead Developer: will Farrell
+	Site: willfarrell.ca
+	Site: FarrellLabs.com
+	Twitter: @willfarrell
+	Location: Canada
+
+/* THANKS */
+
+
+/* SITE */
+	Last Update: 2013/01/01
+	Language: English-Canadian
+	Standards: HTML5, CSS3, W3C
+	Software: Dreamweaver CS6, Coda 2, Terminal (Yeoman), MySQL Workbench, MAMP Pro, Gitbox, LiveReload, Adobe Edge Inspect, Chrome
+
+/* TECH */
+	HTML5 Boilerplate	http://html5boilerplate.com/
+	Twitter Bootstrap	http://twitter.github.com/bootstrap/

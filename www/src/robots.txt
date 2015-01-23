@@ -1,0 +1,7 @@
+# robotstxt.org/
+
+User-Agent: *
+Allow: *
+Sitemap: /sitemap.txt
+Sitemap: /sitemap.xml
+Sitemap: /sitemap.xml.gz

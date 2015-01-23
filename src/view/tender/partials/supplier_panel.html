@@ -1,0 +1,15 @@
+<div data-ng-controller="SupplierCtrl">
+	<form class="form-search">
+		<input type="text" data-ng-model="search.keyword" class="input-large" placeholder="Search followed tenders">
+	    <!--<select>
+	    	<option>Filter By: All</option>
+	        <option>1</option>
+	        <option>2</option>
+	        <option>3</option>
+	        <option>4</option>
+	        <option>5</option>
+	    </select>-->
+	    <a href="#/tender/search/{{search}}" class="btn pull-right"><i class="icon-search"></i> Search Tenders</a>
+	</form><br>
+	<ng-include src="'view/tender/partials/list.html'"></ng-include>
+</div>

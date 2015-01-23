@@ -1,0 +1,252 @@
+<div data-ng-controller="TenderCtrl">
+<!--
+// permissions //
+// vertical ||
+view page:
+tender.privacy == 0 ||
+tender.privacy == 1 ||
+(tender.privacy == 2 && invited_companies.indexOf(session.company_ID))
+
+buyer only:
+session.company_ID == tender.company_ID
+
+supplier only
+session.company_ID != tender.company_ID
+
+
+-->
+<div class="btn-group pull-right">
+	<button class="btn btn-primary" data-ng-show="session.company_ID != tender.company_ID && !permission.follow" data-ng-click="follow(true)">Follow</button>
+	<button class="btn" data-ng-show="session.company_ID != tender.company_ID && permission.follow" data-ng-click="follow(false)">Following</button>
+</div>
+
+<div class="btn-group pull-right">
+	<button class="btn" data-ui-if="tender.url"><i class="icon-link"></i></button>
+	<a class="btn" data-ui-if="session.company_ID == tender.company_ID" href="#/tender/edit/{{tender.tender_ID}}"><i class="icon-edit"></i></a>
+</div>
+
+<h2>{{tender.title}}</h2>
+
+<div class="row-fluid">
+	<div class="span2">
+		<img src="img/tender/{{tender.tender_ID}}.png" width="100" height="100">
+	</div>
+    <div class="span4">
+    	<table class="table table-striped table-bordered table-condensed">
+		  <tbody>
+		  <tr>
+		    <th>Buyer</th>
+		    <td><!--<img src="img/company/{{tender.company.company_ID}}.png?{{filepicker.timestamp}}" width="75" height="50">--><a href="#/company/profile/{{tender.company.company_ID}}">{{tender.company.company_name}}</a></td>
+		  </tr>
+		  <tr data-ng-show="tender.ref_ID">
+		    <th>Reference ID</th>
+		    <td>{{tender.ref_ID}}</td>
+		  </tr>
+		  <tr>
+		    <th>Tender Type</th>
+		    <td>{{json.tender_types[tender.tender_type]}}</td>
+		  </tr>
+		  <tr data-ng-show="tender.categories">
+		    <th>Categories</th>
+		    <td><span data-ng-repeat="category in tender.categories">{{json.categories[category].name}},<br></span></td>
+		  </tr>
+		  		  
+		  </tbody>
+		</table>
+	</div>
+	
+	<div class="span4">
+    	<table class="table table-striped table-bordered table-condensed">
+		  <tbody>
+		  <tr>
+		    <th>Post Date</th>
+		    <td>{{tender.post_timestamp | date:'d MMM y h:mm a'}} {{timezone}}</td>
+		  </tr>
+		  <!--<tr>
+		    <th>Question End Date</th>
+		    <td>{{tender.question_timestamp | date:'d MMM y h:mm a'}} {{timezone}}</td>
+		  </tr>-->
+		  <tr>
+		    <th>Close Date</th>
+		    <td>{{tender.close_timestamp | date:'d MMM y h:mm a'}} {{timezone}}</td>
+		  </tr>
+		  <tr>
+		    <th>Last Updated</th>
+		    <td>{{tender.timestamp_update | date:'d MMM y h:mm a'}} {{timezone}}</td>
+		  </tr>
+		  
+		  </tbody>
+		</table>
+	</div>
+</div>
+<hr>
+<div class="row-fluid">
+	<div class="span8">
+		
+		<tabs>
+	        <pane title="Details">
+		        <!--<table class="table table-striped table-bordered">
+			      <thead>
+			      <tr>
+			        <th>Date</th>
+			        <th>Title</th>
+			        <th><button class="btn btn-primary pull-right" data-ng-click="download()"><i class="icon-download-alt"></i> Download All</button></th>
+			      </tr>
+			      </thead>
+			      <tbody>
+			      <tr>
+			        <td>{{file_timestamp | date}}</td>
+			        <td>{{file_title}}<br>{{file_name}}.{{file_ext}}</td>
+			        <td>
+			          <button class="btn btn-primary pull-right" data-ng-click="download(file_ID)"><i class="icon-download-alt"></i> Download</button>
+			        </td>
+			      </tr>
+			      </tbody>
+			    </table>-->
+				{{tender.details}}
+		        <!-- amendments-->
+		        <table class="table table-striped table-condensed">
+				  <tbody>
+				  <tr data-ng-repeat="amendment in amendments">
+				    <td>
+				    	<p>{{amendment.timestamp | date:'d MMM y h:mm a'}}</p>
+				    	<p>{{amendment}}</p>
+				    </td>
+				  </tr>
+				  
+				  </tbody>
+				</table>
+		        <!--<br><br><i class="icon-tags"></i> {{tender.tags}}-->
+	        </pane>
+	        
+	        <pane title="NDA">
+	        	<div data-ng-show="tender.nda_ID">{{tender.nda.nda_details}}</div>
+	        	<div data-ng-hide="tender.nda_ID">There is no NDA for this tender.</div>
+	        </pane>
+	        
+	    </tabs>
+		
+		<!--<ul class="nav nav-tabs" id="tab_nav">
+		  <li id="tab_nav_details" class=""><a href="" data-ng-click="tab_nav('details')"><i class="icon-info-sign"></i> Details</a></li>
+		  <li id="tab_nav_questions" class=""><a href="" data-ng-click="tab_nav('questions')"><i class="icon-question-sign"></i> Questions</a></li>
+		  <li id="tab_nav_nda" class="" data-ng-show="session.company_ID != tender.company_ID && tender.nda_ID > 0"><a href="" data-ng-click="tab_nav('nda')"><i class="icon-pencil"></i> NDA</a></li>
+		  <li id="tab_nav_bid" class="" data-ng-show="session.company_ID != tender.company_ID && ((tender.nda_ID == 0 || permission.signed) && (tender.privacy == 0 || (tender.privacy == 1 && permission.approved)))" data-ng-click="download()"><a href="" data-ng-click="tab_nav('bid')"><i class="legal"></i> Bid</a></li>
+		  
+		</ul>-->
+		
+	
+	</div>
+	
+	<div class="span4">
+	<div data-ng-show="session.company_ID != tender.company_ID && tender.nda_ID != 0 && !permission.signed">
+		<!--<h3>Bid On This Tender</h3>
+		
+		<h4 data-ng-show="tender.nda_ID != 0 && !permission.signed"><i class="icon-check-empty"></i> 1. Sign NDA</h4>
+		<button class="btn btn-primary" data-ng-show="tender.nda_ID != 0 && !permission.signed" data-ng-click="tab_nav('nda')"><i class="icon-eye-open"></i> View NDA</button>
+		<h4 data-ng-show="tender.nda_ID == 0 && !permission.signed"><i class="icon-check"></i> 1. No NDA</h4>
+		<h4 data-ng-show="permission.signed"><i class="icon-check"></i> 1. NDA Signed</h4>
+		
+		
+		<h4 data-ng-show="tender.privacy == 1 && !permission.waiting && !permission.approved && !permission.denied"><i class="icon-check-empty"></i> 2. Request Approval to Bid</h4>
+		<button class="btn btn-primary" data-ng-show="tender.privacy == 1 && !permission.waiting && !permission.approved && !permission.denied" data-ng-click="request_approval()">Request Approval</button>
+		<h4 data-ng-show="permission.waiting"><i class="icon-check"></i> 2. Waiting on Approval</h4>
+		<h4 data-ng-show="permission.denied"><i class="icon-check"></i> 2. Request Denied</h4>
+		<h4 data-ng-show="tender.privacy == 0 || permission.invite || permission.approved"><i class="icon-check"></i> 2. Request Approved</h4>
+		
+		<h4 data-ng-show="!permission.bid"><i class="icon-check-empty"></i> 3. Place Bid</h4>
+		<button class="btn btn-primary" data-ng-show="((tender.nda_ID == 0 || permission.signed) && (tender.approval_required == 0 || permission.approved)) && !permission.bid" data-ng-click="tab_nav('bid')">Place Bid</button>
+		<h4 data-ng-show="permission.bid"><i class="icon-check"></i> 3. Bid Placed</h4>
+		
+		<br><br>-->
+		<div data-ng-controller="SignatureCtrl" data-ng-show="!permission.signed">
+			<h3>
+				<div class="btn-group pull-right">
+					<button class="btn" data-ng-click="clear()">Clear</button>
+					<button class="btn" data-ng-click="sign_nda()">Save</button>
+				</div>
+				<i class="icon-pencil"></i>&nbsp;Sign NDA
+			</h3>
+		
+			<canvas id="signature" width="300" height="150" style="border:#000 solid 4px"></canvas><br><br>
+		
+		</div>
+	</div>
+	
+	<button class="btn span" data-ng-click="filepicker.download({action:'tender_multi_files'}, tender.tender_ID);"><i class="icon-cloud-download"></i>&nbsp;Download Supporting Documents</button><br><br>
+    
+    <div data-ng-show="session.company_ID != tender.company_ID && ((tender.nda_ID == 0 || permission.signed) && (tender.approval_required == 0 || permission.approved))">
+    	<h3>
+			<div class="btn-group pull-right">
+				<button class="btn" data-ng-click="sign_nda()">Save</button>
+			</div>
+			<i class="icon-pencil"></i>&nbsp;Place Bid
+		</h3>
+		
+		<form name="bidForm" class="form">
+            <div class="control-group {{errors.value.class}}">
+              <label class="control-label">Value</label>
+              <div class="controls">
+                <input type="text" class="input-xlarge" data-ng-model="bid.value" required>
+                <span class="help-block" data-ng-show="errors.value">{{errors.value.message}}</span>
+              </div>
+            </div>
+            
+            <div class="control-group {{errors.details.class}}">
+              <label class="control-label">Details</label>
+              <div class="controls">
+                <textarea class="input-xlarge" data-ng-model="bid.details"></textarea>
+                <span class="help-block" data-ng-show="errors.details">{{errors.details.message}}</span>
+              </div>
+            </div>
+            
+            <div class="control-group" data-ui-if="filepicker && tender.tender_ID">
+				<label class="control-label">Files</label>
+		
+				<div class="controls">
+					<button class="btn" href="" data-ng-click="filepicker.open(filepicker_bid_files, bid.bid_ID);" data-ng-disabled="!(bid.bid_ID)">Upload</button>
+		    	</div>
+		    </div>
+		</form>
+		
+    </div>
+    
+	<h3><i class="icon-user"></i>&nbsp;Contacts</h3>
+	<table class="table table-striped table-bordered">
+		  <tbody>
+		  <tr data-ng-repeat="user in tender.users">
+		    <td>
+            	<div class="btn-group pull-right">
+	            	<button class="btn" data-ng-click="message.open(user.user_ID, user.user_name_first+' '+user.user_name_last)"><i class="icon-envelope"></i></button>
+	            	<!--<a class="btn" rel="tooltip" title="+{{json.calling_codes[tender.location.country_code]}} {{user.user_phone | phone}}" href="tel:+{{json.calling_codes[company.location.country_code]}} {{company.user.user_phone}}" data-ng-disabled="!(user.user_phone)"><i class="icon-phone"></i></a>-->
+	            </div>
+	            <strong>{{user.user_name_first}} {{user.user_name_last}}</strong><br>
+            	<i>{{user.user_function}}</i>
+		    	
+		    </td>
+		  </tr>
+		  </tbody>
+	</table>
+	
+	<!--<button class="btn btn-primary pull-right" data-ng-show="session.company_ID != tender.company_ID"><i class="icon-question-sign"></i> Ask</button>
+	<!--<h3>Questions</h3>
+	In Dev.
+	<!--<table class="table table-striped table-bordered">
+		  <tbody>
+		  <tr data-ng-repeat="user in tender.users">
+		    <td>
+		    	<div class="btn-group pull-right">
+            	<button data-ng-show="user.user_phone || user.user_cell" class="btn btn-primary"><i class="icon-phone"></i> Phone</button>
+                <button data-ng-show="user.user_email" class="btn btn-primary"><i class="icon-envelope"></i> Email</button>            </div>
+            <strong>{{user.user_name}}</strong><br>
+		    <i>{{user.user_function}}</i></td>
+		  </tr>
+		  </tbody>
+	</table>-->
+
+	<!--<h3>Related Tenders</h3>
+	In Dev.
+	</div>-->
+</div>
+
+
+</div>

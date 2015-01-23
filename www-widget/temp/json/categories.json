@@ -1,0 +1,63 @@
+{
+	"1":{"type":"Goods", "name":"Aerospace"},
+	"2":{"type":"Goods", "name":"Air Conditioning and Refrigeration Equipment"},
+	"3":{"type":"Goods", "name":"Armament"},
+	"4":{"type":"Goods", "name":"Chemicals and Chemical Specialties"},
+	"5":{"type":"Goods", "name":"Communications, Detection and Fibre Optics"},
+	"6":{"type":"Goods", "name":"Construction Products"},
+	"7":{"type":"Goods", "name":"Cosmetics and Toiletries"},
+	"8":{"type":"Goods", "name":"Construction Products"},
+	"9":{"type":"Goods", "name":"EDP Hardware and Software"},
+	
+	"10":{"type":"Goods", "name":"EDP and Office Equipment Maintenance"},
+	"11":{"type":"Goods", "name":"Electrical and Electronics"},
+	"12":{"type":"Goods", "name":"Energy"},
+	"13":{"type":"Goods", "name":"Engines, Turbines, Components and Accessories"},
+	"14":{"type":"Goods", "name":"Fabricated Materials"},
+	"15":{"type":"Goods", "name":"Fire Fighting, Security and Safety Equipment"},
+	"16":{"type":"Goods", "name":"Food"},
+	"17":{"type":"Goods", "name":"Food Preparation and Serving Equipment"},
+	"18":{"type":"Goods", "name":"Furniture"},
+	"19":{"type":"Goods", "name":"Industrial Equipment"},
+	
+	"20":{"type":"Goods", "name":"Machinery and Tools"},
+	"21":{"type":"Goods", "name":"Marine"},
+	"22":{"type":"Goods", "name":"Medical Equipment, Supplies and Pharmaceuticals"},
+	"23":{"type":"Goods", "name":"Miscellaneous Goodss"},
+	"24":{"type":"Goods", "name":"Office Equipment"},
+	"25":{"type":"Goods", "name":"Office Stationery and Supplies"},
+	"26":{"type":"Goods", "name":"Prefabricated Structures"},
+	"27":{"type":"Goods", "name":"Publications, Forms and Paper Product"},
+	"28":{"type":"Goods", "name":"Scientific Instruments"},
+	"29":{"type":"Goods", "name":"Special Purpose Vehicles"},
+	
+	"30":{"type":"Goods", "name":"Systems Integration"},
+	"31":{"type":"Goods", "name":"Textiles and Apparel"},
+	"32":{"type":"Goods", "name":"Transportation Equipment and Spares"},
+	
+	
+	"33":{"type":"Services", "name":"Architect and Engineering Servicess"},
+	"31":{"type":"Services", "name":"Communications, Photographic, Mapping, Printing and Publication Servicess"},
+	"32":{"type":"Services", "name":"Construction Servicess"},
+	"33":{"type":"Services", "name":"Custodial Operations and Related Servicess"},
+	"34":{"type":"Services", "name":"Educational and Training Servicess"},
+	"35":{"type":"Services", "name":"Environmental Servicess"},
+	"36":{"type":"Services", "name":"Financial and Related Servicess"},
+	"37":{"type":"Services", "name":"Health and Social Servicess"},
+	"38":{"type":"Services", "name":"Information Processing and Related Telecommunications Servicess"},
+	"39":{"type":"Services", "name":"Lease and Rental of Equipment"},
+	
+	"40":{"type":"Services", "name":"Leasing or Rental of Facilities"},
+	"41":{"type":"Services", "name":"Maintenance, Repair, Modification, Rebuilding and Installation of Goodss/Equipment"},
+	"42":{"type":"Services", "name":"Natural Resources Servicess"},
+	"43":{"type":"Services", "name":"Operation of Government-Owned Facilities"},
+	"44":{"type":"Services", "name":"Professional, Administrative and Management Support Servicess"},
+	"45":{"type":"Services", "name":"Quality Control, Testing, Inspection and Technical Representative Servicess"},
+	"46":{"type":"Services", "name":"Research and Development (R&amp;D)"},
+	"47":{"type":"Services", "name":"Special Studies and Analysis - (Not R&amp;D)"},
+	"48":{"type":"Services", "name":"Transportation, Travel and Relocation Servicess"},
+	"49":{"type":"Services", "name":"Utilities"},
+	
+	
+	"50":{"type":"Other", "name":"Undefined"}
+}

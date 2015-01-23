@@ -1,0 +1,20 @@
+{
+	"name":"Tenders App",
+	"version":"1.0.0",
+	"dependencies":{
+		"modernizr":null,
+		"html5-boilerplate":null,
+		"html5-mobile-boilerplate":null,
+		"json3":null,
+		"angular-complete":null,
+		"angular-ui-bootstrap":null,
+		"angular-ui":null,
+		"angular-strap":null,
+		"angular-modernizr":null,
+		"angular-io":null,
+		"marked":null,
+		"font-awesome":null,
+		"bootstrap":"~2.3.1",
+		"script.js":null
+	}
+}

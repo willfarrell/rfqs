@@ -1,0 +1,70 @@
+<h2>{{tender.title}}<a data-ng-href="{{settings.server}}/#/tender/{{tender.tender_ID}}" class="btn pull-right">Sign In</a></h2>
+
+<div class="row-fluid">
+
+    <div class="span6">
+    	<table class="table table-striped table-bordered">
+		  <tbody>
+		  <tr>
+		    <th>Buyer</th>
+		    <td><a data-ng-href="{{settings.server}}/#/company/{{tender.company.company_ID}}">{{tender.company.company_name}}</a></td>
+		  </tr>
+		  <tr if="tender.ref_ID">
+		    <th>Reference ID</th>
+		    <td>{{tender.ref_ID}}</td>
+		  </tr>
+		  <tr>
+		    <th>Tender Type</th>
+		    <td>{{select.tender_types[tender.tender_type]}}</td>
+		  </tr>
+		  <tr if="tender.url">
+		    <th>URL</th>
+		    <td>{{tender.url}}</td>
+		  </tr>
+		  <tr if="tender.categories">
+		    <th>Categories</th>
+		    <td><span ng-repeat="category in tender.categories">{{select.categories[category].name}},<br></span></td>
+		  </tr>
+
+		  </tbody>
+		</table>
+	</div>
+
+	<div class="span6">
+    	<table class="table table-striped table-bordered">
+		  <tbody>
+		  <tr>
+		    <th>Post Date</th>
+		    <td>{{tender.post_date | date}}</td>
+		  </tr>
+		  <tr>
+		    <th>Question End Date</th>
+		    <td>{{tender.question_date | date}}</td>
+		  </tr>
+		  <tr>
+		    <th>Close Date</th>
+		    <td>{{tender.close_date | date}}</td>
+		  </tr>
+		  <tr>
+		    <th>Last Updated</th>
+		    <td>{{tender.timestamp_update | date}}</td>
+		  </tr>
+
+		  </tbody>
+		</table>
+	</div>
+</div>
+<hr>
+<div class="row-fluid">
+	<div class="span8">
+
+		<ul class="nav nav-tabs">
+		  <li class="active"><a href="">Details</a></li>
+		</ul>
+		{{tender.details}}
+	</div>
+
+	<div class="span4">
+
+	</div>
+</div>

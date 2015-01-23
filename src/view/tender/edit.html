@@ -1,0 +1,296 @@
+<div class="container" data-ng-controller="TenderCtrl">
+	<div class="row">
+		<div class="span1"></div>
+		<div class="span10">
+			
+			<style>
+			.progress-container {
+				position:relative;
+				height: 20px;
+				margin: 40px 0 20px 0;
+			}
+			
+			.progress-label {
+				padding: 3px 8px;
+				bottom: 30px;
+				color: white;
+				font-size: 12px;
+				font-weight: bold;
+				background: #323538;
+				background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#323538), to(#474c51));
+				background-image: -webkit-linear-gradient(top, #323538, #474c51);
+				background-image: -moz-linear-gradient(top, #323538, #474c51);
+				background-image: -o-linear-gradient(top, #323538, #474c51);
+				background-image: linear-gradient(to bottom, #323538, #474c51);
+				background-repeat: repeat-x;
+				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff323538', endColorstr='#ff474c51', GradientType=0);
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				border-radius: 4px;
+				-webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+				-moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+				box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+				/*cursor: col-resize;*/
+				
+				position:absolute;
+				display:block;
+			}
+			
+			.progress-label-value {
+				color: white;
+				font-size: 12px;
+				font-weight: bold;
+				cursor: col-resize;
+			}
+			
+			.progress-label-inner {
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				display: block;
+				z-index: 99;
+				border-left: 6px solid transparent;
+				border-right: 6px solid transparent;
+				margin-left: -6px;
+				border-top: 6px solid #474c51;
+			}
+			
+			</style>
+			<!--<div class="progress-container">
+				<div class="progress">
+				  	<div class="bar" data-ng-style="{'width': progress.current+'%'}"></div>
+				</div>
+				<div class="progress-label" data-ng-style="{'left': progress.create+'%'}">
+					<div class="progress-label-value">Created</div>
+					<div class="progress-label-inner"></div>
+				</div>
+				<div class="progress-label" data-ng-style="{'left': progress.post+'%'}">
+					<div class="progress-label-value">Post</div>
+					<div class="progress-label-inner"></div>
+				</div>
+				<div class="progress-label" data-ng-style="{'left': progress.question+'%'}">
+					<div class="progress-label-value">Bid</div>
+					<div class="progress-label-inner"></div>
+				</div>
+				<div class="progress-label" data-ng-style="{'left': progress.close+'%'}">
+					<div class="progress-label-value">Close</div>
+					<div class="progress-label-inner"></div>
+				</div>
+			</div>-->
+			<!--<div class="progress">
+			  	<div class="bar" data-ng-style="{'width': progress+'%'}" data-ng-switch="stage">
+	          		<span data-ng-switch-when="-1">Create</span>
+	          		<span data-ng-switch-when="0">Upload &amp; Edit</span>
+	          		<a href="" data-ng-switch-when="1">Questions</a>
+	          		<a href="" data-ng-switch-when="2">Bid</a>
+	          		<a href="" data-ng-switch-when="3">Award</a>
+	          		<a href="" data-ng-switch-default></a>
+				  	
+			  	</div>
+			</div>-->
+		</div>
+		
+	</div>
+    <div class="row">
+      	<div class="span1"></div>
+      	<div class="span3" data-bs-navbar>
+	        <!--<ul class="nav nav-tabs nav-stacked">
+	          	<li data-ng-switch="stage">
+	          		<a href="" data-ng-switch-when="-1">Create</a>
+	          		<a href="" data-ng-switch-when="0">Upload &amp; Edit</a>
+	          		<a href="" data-ng-switch-when="1">Questions</a>
+	          		<a href="" data-ng-switch-when="2">Bid</a>
+	          		<a href="" data-ng-switch-when="3">Award</a>
+	          		<a href="" data-ng-switch-default></a>
+	          	</li>
+	        </ul>-->
+	        <ul class="nav nav-tabs nav-stacked">
+	          	<li data-match-route="/tender/edit/details"><a href="" data-ng-click="page_url = 'edit_details'">Tender Details</a></li>
+	          	<li data-match-route="/tender/edit/amendments"><a href="" data-ng-click="page_url = 'edit_amendments'">Amendments</a></li>
+	          	<!--<li><a href="">Questions</a></li>-->
+	          	<li data-match-route="/tender/edit/bids"><a href="" data-ng-click="page_url = 'bids'">Bids</a></li>
+	        </ul>
+	        <!--<ul class="nav nav-tabs nav-stacked">
+	          	<li><a href=""><input type="text" data-ng-model="search" class="input-block-level" placeholder="Find people to invite"></a></li>
+	          	<li data-ng-repeat=""><a href="">{{user}}</a></li>
+	        </ul>-->
+        </div>
+      	<div class="span7 well-white">
+	    	<div data-ng-include src="'view/tender/partials/'+page_url+'.html'"></div>
+	    </div>
+      	<div class="span1"></div>
+	</div>
+</div>
+
+
+<div class="row-fluid" data-ng-hide="true">
+    <div class="span6">
+	    
+            				
+
+        <!-- 1 QUESTION STAGE -->
+        <div data-ui-if="stage == 1 || stage == 2">
+
+        <form name="tenderAmendForm" class="form-horizontal">
+
+        	<legend>New Amendment
+        		<div class="btn-group pull-right">
+	        		<button class="btn btn-primary" data-ng-click="saveTenderAmendment()" data-ng-disabled="tenderAmendForm.$invalid"><i class="icon-plus"></i> Add</button>
+        		</div>
+        	</legend>
+
+        	<div class="control-group">
+              <label class="control-label">Title</label>
+              <div class="controls">
+                <input type="text" class="input-block-level" data-ng-model="amendment.change_name" required>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Details</label>
+              <div class="controls">
+                <textarea class="input-block-level" data-ng-model="amendment.change_details"></textarea>
+              </div>
+            </div>
+        </form>
+
+        </div>
+
+        <table class="table table-striped table-bordered" data-ui-if="amendments.length">
+	      <thead>
+	      <tr>
+	        <th>Date</th>
+	        <th>Name</th>
+	        <th><button class="btn btn-primary pull-right" data-ng-click="download()"><i class="icon-download-alt"></i> Download All</button></th>
+	      </tr>
+	      </thead>
+	      <tbody>
+	      <tr data-ng-repeat="amendment in amendments | orderBy:'-change_timestamp':false">
+	        <td>{{amendment.change_timestamp | date}}</td>
+	        <td>{{amendment.change_name}}</td>
+	        <td>
+	          <button class="btn btn-primary pull-right" data-ng-click="download()"><i class="icon-download-alt"></i> Download</button>
+	        </td>
+	      </tr>
+	      </tbody>
+	    </table>
+        <!-- 2 BID STAGE -->
+        <!-- 3 AWARD STAGE -->
+    </div>
+
+    <div class="span6">
+
+
+    	<div data-ui-if="stage">
+    	<h2>Bids</h2>
+        <table class="table table-striped table-bordered">
+          <thead data-ui-if="bids.length">
+          <tr>
+            <th>Company</th>
+            <th>Value</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr data-ng-repeat="bid in bids">
+            <td><a>{{bid.company_name}}</a><br/>
+            <i>{{bid.user_name}} ( {{bid.user_function}} )</i></td>
+            <td>{{bid.value | currency}}</td>
+            <td>
+                <div class="pull-right">
+	                <button class="btn btn-primary" data-ng-click="stopBubble(); download()"><i class="icon-download-alt"></i></button>
+
+	                <button class="btn btn-primary" data-ng-click="stopBubble(); award_company(bid.company_ID, true)" data-ui-if="bid.awarded == 0 && stage == 3"><i class="icon-trophy"></i></button>
+	                <button class="btn btn-primary active" data-ng-click="stopBubble(); award_company(bid.company_ID, false)" data-ui-if="bid.awarded == 1 &&  stage == 3""><i class="icon-trophy"></i></button>
+                </div>
+            </td>
+          </tr>
+          <tr data-ui-if="!bids.length"><td colspan="3">No Bids Yet.</td></tr>
+          </tbody>
+        </table>
+    	</div>
+
+        <div data-ui-if="tender.privacy == 1">
+	        <h2>Approval To Bid<div class="btn-group pull-right"><!--<button class="btn btn-success"><i class="icon-ok icon-white"></i> Approve All</button></div>--></h2>
+	        <table class="table table-striped table-bordered">
+	          <tbody>
+	          <tr data-ng-repeat="company in approval_required" data-ng-click="href('#/company/view/'+company.company_ID)">
+	            <td>
+	            	<div class="btn-group pull-right">
+	                    <button class="btn btn-success active" data-ui-if="company.approved_timestamp > 0"><i class="icon-ok"></i></button>
+
+	                    <button data-ui-if="company.approved_timestamp == null || company.approved_timestamp == 0" class="btn btn-success" data-ng-click="stopBubble(); approve_company(company.company_ID, true)"><i class="icon-ok"></i></button>
+
+	                    <button data-ui-if="company.approved_timestamp == null || company.approved_timestamp > 0" class="btn btn-danger" data-ng-click="stopBubble(); approve_company(company.company_ID, false)"><i class="icon-remove"></i></button>
+
+	                    <button class="btn btn-danger active" data-ui-if="company.approved_timestamp == 0" disabled><i class="icon-remove"></i></button>
+	                </div>
+	            	<a>{{company.company_name}}</a><br/>
+	            	<i>{{company.user_name}} ( {{company.user_function}} )</i></td>
+	          </tr>
+	          <tr data-ui-if="!approval_required.length"><td>No companies to approve.</td></tr>
+	          </tbody>
+	        </table>
+        </div>
+
+        <div data-ui-if="tender.nda_ID > 0 && 0">
+	        <h2>Signed NDAs</h2>
+	        <table class="table table-striped table-bordered">
+	          <tbody>
+	          <tr data-ng-repeat="user in signatures" data-ng-click="href('#/company/view/'+user.company_ID)">
+	            <td>
+	            	<div id="signature_{{user.user_ID}}" class="sigPad signed pull-right">
+					  <div class="sigWrapper">
+					    <div class="typed">{{user.user_name}}</div>
+					    <canvas class="pad" width="200" height="55"></canvas>
+					  </div>
+					</div>
+					<a>{{user.company_name}}</a><br>
+					<i>{{user.user_name}} ( {{user.user_function}} )</i><br>
+	            	<strong>IP:</strong> {{user.signature_ip}}<br>
+	            	 </td>
+	          </tr>
+	          <tr data-ui-if="!signatures"><td>No users have signed your NDA yet.</td></tr>
+	          </tbody>
+	        </table>
+        </div>
+
+
+        <!--<div data-ui-if="stage < 3">
+    	<form class="form-search">
+	    	<a href="" class="btn btn-primary pull-right"><i class="icon-share"></i> Invite</a>
+	    	<input type="text" data-ng-model="keyword" data-ng-change="searchCompanies()" class="search-query" placeholder="Search">
+	    </form>
+
+    	<!--<table class="table table-striped table-bordered">
+    		<tbody>
+		      <tr data-ng-repeat="company in companies">
+		        <td><img src="/img/company/{{company.company_ID}}.png" width="100" height="50" /></td>
+		        <td><input type="checkbox" value="" data-ng-model="invites[company.company_ID]"> {{company.company_name}}<br>
+		        {{company.user_name}}</td>
+		      </tr>
+		      <tr data-ui-if="!groups.length && !companies.length"><td>Search to invite companies you follow to bid.</td></tr>
+	      	</tbody>
+	    </table>-->
+
+	    <!--<ul class="thumbnails">
+	    	<li data-ng-repeat="company in companies" class="well">
+
+	    		<img src="/img/company/{{company.company_ID}}.png" width="100" height="50" /><br>
+	    		<input type="checkbox" value="" data-ng-model="invites[company.company_ID]"> {{company.company_name}}<br>
+	    		{{company.user_name}}
+	    		</li>
+	    </ul>
+
+	    Selected
+	    <ul class="thumbnails">
+	    	<li data-ng-repeat="(key,value) in invites"><input type="checkbox" value="" data-ng-model="invites[key]"> {{key}} {{companies[key].company_name}}</li>
+	    	<li data-ui-if="!invites.length">No companies to be invited</li>
+	    </ul>
+
+	    Invited
+	    ....
+    	</div>-->
+
+
+    </div>
+</div>

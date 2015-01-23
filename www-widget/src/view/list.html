@@ -1,0 +1,12 @@
+<div class="row-fluid">
+    <div class="span12">
+	    <form class="form-search">
+	    	<input type="text" ng-model="search" class="search-query" placeholder="Search">
+	        
+	        <a data-ng-href="{{settings.server}}/#/company/profile/{{company_ID}}" class="btn pull-right">Sign In</a>
+	    </form>
+	    <ng-include src="'view/partial.list.html'"></ng-include>
+	     <!--<a href="https://twitter.com/{{twitter}}" class="btn" target="_blank" if="twitter"><i class="icon-twitter"></i> Twitter</a>-->
+	     <!--<a href="https://api.twitter.com/1/statuses/user_timeline.rss?screen_name={{twitter}}" class="btn" target="_blank" if="twitter">RSS</a>-->
+    </div>
+</div>

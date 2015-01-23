@@ -1,0 +1,267 @@
+<form name="tenderEditForm" class="form-horizontal">
+	<legend>Tender Details</legend>
+    <hr>
+    <!--[if gt IE 8]><!-->
+    <div class="control-group" data-ui-if="filepicker">
+		<label class="control-label">Preview Image</label>
+		<div class="controls">
+    		<img data-ng-src="img/tender/{{tender.tender_ID}}.png?{{filepicker.timestamp}}" class="img-polaroid" width="100" height="100"/>
+			<button class="btn" data-ng-click="filepicker.upload(settings.filepicker.tender_single_image, tender.tender_ID);" data-ng-disabled="stage != 0">Change Image</button>
+			<span class="help-block" data-ng-hide="tender.tender_ID">Will become active after first save.</span>
+    	</div>
+    </div>
+    <!--<![endif]-->
+	<div class="control-group" data-ng-class="{error: (errors.user.user_name)}">
+      <label class="control-label">Title</label>
+      <div class="controls">
+        <input type="text" class="input-block-level" data-ng-model="tender.title" data-ng-disabled="stage > 0" required>
+        <span class="help-block" data-ng-show="errors.title">{{errors.title}}</span>
+      </div>
+    </div>
+
+    <div class="control-group" data-ng-class="{error: (errors.ref_ID)}">
+      <label class="control-label">Reference ID</label>
+      <div class="controls">
+        <input type="text" class="input-block-level" data-ng-model="tender.ref_ID" data-ng-disabled="stage > 0">
+        <span class="help-block" data-ng-show="errors.ref_ID">{{errors.ref_ID}}</span>
+      </div>
+    </div>
+
+    <div class="control-group" data-ng-class="{error: (errors.tender_type)}">
+      <label class="control-label">Tender Type</label>
+      <div class="controls">
+        <select class="input-block-level" data-ng-model="tender.tender_type" data-ng-options="key as value for (key, value) in json.tender_types" data-ng-disabled="stage > 0" required></select>
+        <span class="help-block" data-ng-show="errors.tender_type">{{errors.tender_type}}</span>
+      </div>
+    </div>
+
+    <!--<div class="control-group" data-ui-if="stage == 0">
+      <label class="control-label">Posting Date</label>
+      <div class="controls">
+      	<div class="input-append date" id="post_date_picker"
+      		data-date="{{tender.post_date | date:'yyyy/MM/dd'}}"
+      		data-date-format="yyyy/mm/dd"
+
+      		ng-click="datepickerOpen('post')">
+      		<span class="add-on"><i class="icon-th"></i></span><input type="text"
+				value="{{tender.post_date | date:'yyyy/MM/dd'}}"
+				ng-model="tender.post_date_i"
+				ng-change="datepickerChange('post')"
+				>
+
+		</div>
+		<input type="text" id="post_date"
+				value=""
+				ng-model="tender.post_date"
+				ng-change="datepickerChange('post')"
+				>
+      	<select class="input-small"
+      		ng-model="post_date.year"
+      		ng-options="key as value for (key, value) in select.year"
+      		ng-change="dateselectChange('post')"
+      		required></select>
+      	<select class="input-small"
+      		ng-model="post_date.month"
+      		ng-options="key as value for (key, value) in select.month"
+      		ng-change="dateselectChange('post')"
+      		required></select>
+      	<select class="input-small"
+      		ng-model="post_date.day"
+      		ng-options="key as value for (key, value) in select.day(post_date.year, post_date.month)"
+      		ng-change="dateselectChange('post')"
+      		required></select>
+
+
+
+        <select class="input-small" data-ng-model="tender.post_time" data-ng-options="key as value for (key, value) in select.time" required></select>
+         {{timezone}}
+      </div>
+    </div>-->
+    
+    <div class="control-group" data-ng-class="{error: (errors.post_timestamp)}">
+      <label class="control-label">Posting Date</label>
+      <div class="controls">
+      	<div class="inline">
+      		<input type="text" class="input-medium" data-ng-model="datetimepicker.post.date" data-date-format="yyyy-mm-dd" data-start-date="2013-04-10" data-end-date="2013-04-20" data-days-of-week-disabled="0,6" data-bs-datepicker data-ng-disabled="stage > 0" required>
+      		<i class="icon-calendar icon-input" data-toggle="datepicker"></i>
+      		&nbsp;
+      		<input type="text" class="input-small" data-ng-model="datetimepicker.post.time" data-bs-timepicker data-ng-disabled="stage > 0" required>
+      		<i class="icon-time icon-input" data-toggle="timepicker"></i>
+      		&nbsp;&nbsp;{{timezone(datetimepicker.post)}}
+		</div>
+         <span class="help-block" data-ng-show="errors.post_timestamp">{{errors.post_timestamp}}</span>
+      </div>
+    </div>
+    
+    <!--<div class="control-group" data-ng-class="{error: (errors.question_timestamp)}">
+      <label class="control-label">Questioning End Date</label>
+      <div class="controls">
+      	<div class="inline">
+		  <input type="text" class="input-medium" data-ng-model="datetimepicker.question.date" data-date-format="dd M yyyy" data-bs-datepicker>
+		  <i class="icon-calendar" style="position: relative;margin: 2.5px 0 0 -24px;" data-toggle="datepicker"></i>
+		  &nbsp;
+		  <input type="text" class="input-small" data-ng-model="datetimepicker.question.date" data-bs-timepicker>
+		  <i class="icon-time" style="position: relative;margin: 2.5px 0 0 -24px;" data-toggle="timepicker"></i>
+		</div>
+         <span class="help-block" data-ng-show="errors.question_timestamp">{{errors.question_timestamp}}</span>
+      </div>
+    </div>-->
+    
+    <div class="control-group" data-ng-class="{error: (errors.question_timestamp)}">
+      <label class="control-label">Question End Date</label>
+      <div class="controls">
+      	<div class="inline">
+		  <input type="text" class="input-medium" data-ng-model="datetimepicker.question.date" data-date-format="dd M yyyy" data-bs-datepicker data-ng-disabled="stage > 1" required>
+		  <i class="icon-calendar icon-input" data-toggle="datepicker"></i>
+		  &nbsp;
+		  <input type="text" class="input-small" data-ng-model="datetimepicker.question.time" data-bs-timepicker data-ng-disabled="stage > 1" required>
+		  <i class="icon-time icon-input" data-toggle="timepicker"></i>
+		  &nbsp;&nbsp;{{timezone(datetimepicker.close)}}
+		</div>
+         <span class="help-block" data-ng-show="errors.question_timestamp">{{errors.question_timestamp}}</span>
+      </div>
+    </div>
+    
+    <div class="control-group" data-ng-class="{error: (errors.close_timestamp)}">
+      <label class="control-label">Closing Date</label>
+      <div class="controls">
+      	<div class="inline">
+		  <input type="text" class="input-medium" data-ng-model="datetimepicker.close.date" data-date-format="dd M yyyy" data-bs-datepicker data-ng-disabled="stage > 2" required>
+		  <i class="icon-calendar icon-input" data-toggle="datepicker"></i>
+		  &nbsp;
+		  <input type="text" class="input-small" data-ng-model="datetimepicker.close.time" data-bs-timepicker data-ng-disabled="stage > 2" required>
+		  <i class="icon-time icon-input" data-toggle="timepicker"></i>
+		  &nbsp;&nbsp;{{timezone(datetimepicker.close)}}
+		</div>
+         <span class="help-block" data-ng-show="errors.close_timestamp">{{errors.close_timestamp}}</span>
+      </div>
+    </div>
+    
+    <!--<div class="control-group" data-ng-class="{error: (errors.close_timestamp)}">
+      <label class="control-label">Award By Date</label>
+      <div class="controls">
+      	<div class="inline">
+		  <input type="text" class="input-medium" data-ng-model="datetimepicker.close.date" data-date-format="dd M yyyy" data-bs-datepicker data-ng-disabled="stage > 2" required>
+		  <i class="icon-calendar icon-input" data-toggle="datepicker"></i>
+		  &nbsp;
+		  <input type="text" class="input-small" data-ng-model="datetimepicker.close.time" data-bs-timepicker data-ng-disabled="stage > 2" required>
+		  <i class="icon-time icon-input" data-toggle="timepicker"></i>
+		  &nbsp;&nbsp;{{timezone(datetimepicker.close)}}
+		</div>
+         <span class="help-block" data-ng-show="errors.close_timestamp">{{errors.close_timestamp}}</span>
+      </div>
+    </div>-->
+
+    <div class="control-group" data-ng-class="{error: (errors.url)}">
+      <label class="control-label">Tender URL</label>
+      <div class="controls">
+        <input type="text" class="input-block-level" data-ng-model="tender.url" placeholder="http://">
+        <span class="help-block" data-ng-show="errors.url">{{errors.url}}</span>
+      </div>
+    </div>
+
+     <!--<div class="control-group" data-ng-class="{error: (errors.location_ID)}">
+      <label class="control-label">Bid Delivery Location</label>
+      <div class="controls">
+        <select class="input-block-level" data-ng-model="tender.location_ID" data-ng-options="key as value.location_name  for (key, value) in locations">
+        	<option value="">Online Submissions Only</option>
+        </select>
+        <span class="help-block" data-ng-show="errors.location_ID">{{errors.location_ID}}</span>
+      </div>
+    </div>-->
+
+    <div class="control-group" data-ng-class="{error: (errors.details)}">
+      <label class="control-label">Details</label>
+      <div class="controls">
+        <textarea class="input-block-level" data-ng-model="tender.details" rows="4" data-ng-disabled="stage > 0" required></textarea>
+        <span class="help-block" data-ng-show="errors.details">{{errors.details}}</span>
+      </div>
+    </div>
+
+
+    <!--<div class="control-group" data-ng-class="{error: (errors.categories)}">
+      <label class="control-label">Categories</label>
+      <div class="controls">
+      	<select class="input-block-level" data-ng-model="tender.categories" data-ng-options="key as value.name group by value.type for (key, value) in select.categories" multiple required></select>
+      	<span class="help-block" data-ng-show="errors.categories">{{errors.categories}}</span>
+      </div>
+    </div>
+
+    <div class="control-group" data-ng-class="{error: (errors.tags)}">
+      <label class="control-label">Tags</label>
+      <div class="controls">
+      	<input id="tags" type="text" class="input-block-level" data-ng-model="tender.tags" />
+      	<span class="help-block" data-ng-show="errors.tags">{{errors.tags}}</span>
+      </div>
+    </div>-->
+
+    <div class="control-group" data-ui-if="filepicker">
+		<label class="control-label">Files</label>
+
+		<div class="controls">
+			<button class="btn" data-ng-click="filepicker.upload(settings.filepicker.tender_multi_files, tender.tender_ID);" data-ng-disabled="stage != 0">Upload</button>
+			<button class="btn" data-ng-click="filepicker.download(settings.filepicker.tender_multi_files, tender.tender_ID);" data-ng-disabled="stage == -1">Download</button>
+			<span class="help-block" data-ng-hide="tender.tender_ID">Will become active after first save.</span>
+    	</div>
+    	
+    	<!--<div data-ng-include="'filepicker-edit-list'"></div>-->
+    </div>
+    
+    <hr>
+    <div class="control-group">
+    	<b>Privacy</b>
+    </div>
+    
+    <div class="control-group" data-ng-class="{error: (errors.privacy)}">
+      <label class="control-label">Privacy</label>
+      <div class="controls">
+      	<label class="radio">
+          	 <input type="radio" data-ng-model="tender.privacy" value="0"> Public
+      	</label>
+      	<!--<label class="radio">
+          	 <input type="radio" data-ng-model="tender.privacy" value="1"> Public - Approval Required
+      	</label>-->
+        <!--<label class="radio">
+          	 <input type="radio" data-ng-model="tender.privacy" value="2"> Private - Invite Only
+      	</label>-->
+        <span class="help-block" data-ng-show="errors.privacy">{{errors.privacy}}</span>
+      </div>
+    </div>
+    
+    <div class="control-group" data-ng-class="{error: (errors.privacy)}">
+      <label class="control-label">NDA</label>
+      <div class="controls">
+      	<label class="checkbox">
+          	 <input type="checkbox" data-ng-model="tender.nda_ID"> By checking this box, all must sign the NDA before being able to access uploaded files.
+      	</label>
+        <span class="help-block" data-ng-show="errors.nda_ID">{{errors.nda_ID}}</span>
+      </div>
+    </div>
+    
+    <!--<div class="control-group" data-ng-class="{error: (errors.nda_ID)}">
+      <label class="control-label">NDA</label>
+      <div class="controls">
+        <select class="input-block-level" data-ng-model="tender.nda_ID" data-ng-options="key as value.nda_title for (key, value) in  ndas">
+
+        </select>
+        <span class="help-block" data-ng-show="errors.nda_ID">{{errors.nda_ID}}</span>
+      </div>
+    </div>-->
+
+     <!--<div class="control-group" data-ng-class="{error: (errors.users)}">
+      <label class="control-label">Tender Admins</label>
+      <div class="controls">
+      	<select class="input-block-level" data-ng-model="tender.users" data-ng-options="key as value.user_name for (key, value) in users" multiple required></select>
+      	<span class="help-block" data-ng-show="errors.users">{{errors.users}}</span>
+      </div>
+    </div>-->
+    
+    <hr>
+    
+    <div class="control-group">
+      	<div class="controls">
+          	<button class="btn" data-ng-click="updateTender()" data-ng-disabled="tenderEditForm.$invalid">Save changes</button>
+          	<!--<button class="btn btn-danger" data-ng-show="tender.tender_ID">Delete Tender</button>-->
+        </div>
+    </div>
+</form>

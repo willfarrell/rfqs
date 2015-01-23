@@ -1,0 +1,62 @@
+{
+	"user_single_image": {
+		"action": "user_single_image",
+		"types": ["image/*"],
+		"extensions": [".jpg", ".jpeg", ".gif", ".bmp", ".png"],
+		"services": ["COMPUTER"],
+		"service": "COMPUTER",
+		"multi": false,
+		"resizecrop": true,
+		"width": 200,
+		"height": 200
+	},
+	"company_single_image": {
+		"action": "company_single_image",
+		"types": ["image/*"],
+		"extensions": [".jpg", ".jpeg", ".gif", ".bmp", ".png"],
+		"services": ["COMPUTER", "URL"],
+		"service": "COMPUTER",
+		"multi": false,
+		"resizecrop": true,
+		"width": 300,
+		"height": 200
+	},
+	"company_multi_images": {
+		"action": "company_multi_images",
+		"types": ["image/*"],
+		"extensions": [".jpg", ".jpeg", ".gif", ".bmp", ".png"],
+		"services": ["COMPUTER", "URL"],
+		"service": "COMPUTER",
+		"multi": true,
+		"resizecrop": true,
+		"width": 600,
+		"height": 600
+	},
+	"tender_single_image": {
+		"action":"tender_single_image",
+		"types": ["image/*"],
+		"extensions": [".jpg", ".jpeg", ".gif", ".bmp", ".png"],
+		"services": ["COMPUTER"],
+		"service": "COMPUTER",
+		"multi": false,
+		"resizecrop": true,
+		"width": 200,
+		"height": 200
+	},
+	"tender_multi_files": {
+		"action":"tender_multi_files",
+		"types": ["*/*"],
+		"extensions": [],
+		"services": ["COMPUTER"],
+		"service": "COMPUTER",
+		"multi":true
+	},
+	"bid_multi_files": {
+		"action":"bid_multi_files",
+		"types": ["*/*"],
+		"extensions": [],
+		"services": ["COMPUTER"],
+		"service": "COMPUTER",
+		"multi":true
+	}
+}

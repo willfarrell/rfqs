@@ -1,0 +1,50 @@
+<form name="tenderEditForm" class="form-horizontal">
+	<fieldset><legend>Amendments</legend></fieldset>
+    <hr>
+    <div class="control-group">
+    	<b>Bids</b>
+    </div>
+    
+    <div class="control-group" data-ng-class="{error: (errors.privacy)}">
+      <label class="control-label">Privacy</label>
+      <div class="controls">
+      	<label class="radio">
+          	 <input type="radio" data-ng-model="tender.privacy" value="0"> Public
+      	</label>
+      	<!--<label class="radio">
+          	 <input type="radio" data-ng-model="tender.privacy" value="1"> Public - Approval Required
+      	</label>-->
+        <label class="radio">
+          	 <input type="radio" data-ng-model="tender.privacy" value="2"> Private - Invite Only
+      	</label>
+        <span class="help-block" data-ng-show="errors.privacy">{{errors.privacy}}</span>
+      </div>
+    </div>
+
+    <!--<div class="control-group" data-ng-class="{error: (errors.nda_ID)}">
+      <label class="control-label">NDA</label>
+      <div class="controls">
+        <select class="input-block-level" data-ng-model="tender.nda_ID" data-ng-options="key as value.nda_title for (key, value) in  ndas">
+
+        </select>
+        <span class="help-block" data-ng-show="errors.nda_ID">{{errors.nda_ID}}</span>
+      </div>
+    </div>-->
+
+     <!--<div class="control-group" data-ng-class="{error: (errors.users)}">
+      <label class="control-label">Tender Admins</label>
+      <div class="controls">
+      	<select class="input-block-level" data-ng-model="tender.users" data-ng-options="key as value.user_name for (key, value) in users" multiple required></select>
+      	<span class="help-block" data-ng-show="errors.users">{{errors.users}}</span>
+      </div>
+    </div>-->
+    
+    <hr>
+    
+    <div class="control-group">
+      	<div class="controls">
+          	<button class="btn" data-ng-click="updateTender()" data-ng-disabled="tenderEditForm.$invalid">Save changes</button>
+          	<!--<button class="btn btn-danger" data-ng-show="tender.tender_ID">Delete Tender</button>-->
+        </div>
+    </div>
+</form>

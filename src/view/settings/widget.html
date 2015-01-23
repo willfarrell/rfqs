@@ -1,0 +1,45 @@
+<form name="ndaForm" class="form-horizontal" data-ng-controller="NdaCtrl">
+	<fieldset><legend>Site Widget</legend></fieldset>
+	<!--<p>What to show your public tenders on your own website?</p>-->
+	
+	<hr>
+	
+    <div class="control-group">
+        <label class="control-label">Steps</label>
+	    <div class="controls">
+		    <ol>
+		    	<!--<li>Click the "Enable" button above.</li>-->
+		        <li>Copy the code snippet below.</li>
+		        <li>Paste the code onto your web site.</li>
+		        <li>That's it. You're done.</li>
+		    </ol>
+	    </div>
+	</div>
+	
+	<!--<div class="control-group" data-ng-class="{error: (errors.privacy)}">
+      <label class="control-label">Enable</label>
+      <div class="controls">
+      	<label class="checkbox">
+          	 <input type="checkbox" data-ng-model="tender.nda_ID"> By checking this box, all must sign the NDA before being able to access uploaded files.
+      	</label>
+        <span class="help-block" data-ng-show="errors.nda_ID">{{errors.nda_ID}}</span>
+      </div>
+    </div>-->
+    
+	<div class="control-group">
+        <label class="control-label">Code</label>
+	    <div class="controls">
+		    <div class="well" style="overflow:scroll">
+	    &lt;iframe src=&quot;http://widget.rfqs.ca/#/{{session.company_ID}}/{{session.referral}}&quot; width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;border:0&quot;&gt;&lt;/iframe&gt;
+	    </div>
+	    </div>
+	</div>
+	
+	
+	<hr>
+	<div class="control-group">
+      	<div class="controls">
+	      	<button class="btn" data-ng-click="saveNDA()" data-ng-disabled="ndaForm.$invalid">Save changes</button>
+      	</div>
+	</div>
+</form>

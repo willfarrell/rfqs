@@ -1,0 +1,41 @@
+
+
+<div class="row-fluid" data-ng-controller="SearchCtrl" data-ng-init="searchTenders()">
+    <div class="span3">
+    	<ul class="nav nav-list well">
+        	<li class="nav-header">Current Search</li>
+            <li data-ng-show="search.keyword.length"><b>Keyword:</b> {{search.keyword}}</li>
+            <li data-ng-show="search.categories"><b>Category:</b> {{select.categories[search.categories]}}</li>
+            <li class="center"><button class="btn">Save As</button></li>
+  			<!--<li class="nav-header">Saved Searches</li>
+  			<li><a href="#">Search A</a></li>
+  			<li><a href="#">Search B</a></li>-->
+  			
+  			<!--<li class="nav-header">Buyer Tenders</li>
+  			<li><a href="">Question Stage</a></li>
+  			<li><a href="">Bidding Stage</a></li>
+  			<li><a href="">Review &amp; Award Stage</a></li>
+  			<li><a href="">Awarded</a></li>-->
+  			
+  			<!--<li class="nav-header">Supplier Tenders</li>
+  			<li><a href="">Following</a></li>
+  			<li><a href="">To Bid On</a></li>
+  			<li><a href="">Have Bid On</a></li>
+  			<li><a href="">Awarded</a></li>-->
+		</ul>
+    </div>
+    <div class="span9">
+    <form class="form-search">
+    	<!--<div class="input-append">-->
+            <input type="text" data-ng-model="search.keyword" data-ng-change="searchTenders()" class="input-large" placeholder="Search">
+            <!--<button class="btn btn-primary"><i class="icon-cogs"></i> Advanced</button>-->
+            <!--<button class="btn btn-primary" data-ng-click="search.run()">Go!</button>
+        </div>-->
+    </form><br>
+    <!--<div id="">
+    	<select class="input-xlarge" data-ng-model="search.categories" data-ng-options="key as value.name group by value.type for (key, value) in json.categories" multiple required></select>
+    </div>-->
+	<ng-include src="'view/tender/partials/list.html'"></ng-include>
+	<button class="btn" data-ng-click="searchTenders(Math.floor(tenders.length/20))" data-ng-show="tenders.length % 20 == 0">More</button>
+    </div>
+</div>

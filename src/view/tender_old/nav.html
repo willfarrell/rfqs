@@ -1,0 +1,123 @@
+<div class="navbar navbar-fixed-top" data-ng-hide="session.user_ID && 0">
+	<div class="navbar-inner">
+        <div class="container">
+        	<!--<div class="btn-group pull-left">
+				<button class="btn" data-ng-click="back()"><i class="icon-arrow-left"></i></button><button class="btn" data-ng-click="refresh()"><i class="icon-refresh"></i></button>
+			</div>&nbsp;&nbsp;-->
+			<a class="brand" href="#"><img src="./img/logo-red-clear.png" alt="RFQs.ca Logo" style="height:22px;" /></a>
+			<div class="btn-group pull-right">
+				<a class="btn" href="#/app"><i class="icon-signin"></i> Sign In</a>
+			</div>
+			<ul id="top_nav" class="nav pull-right">
+			    <li id="top_nav_home" class=""><a href="#/">Home</a></li>
+			    <!--<li class=""><a href="#/about">About</a></li>-->
+			    <li id="top_nav_pricing" class=""><a href="#/pricing">Pricing</a></li>
+			    <li id="top_nav_contact" class=""><a href="#/contact">Contact</a></li>
+			</ul>
+        </div><!-- /container -->
+	</div>
+</div>
+<div class="navbar navbar-fixed-top" data-ng-show="1">
+	<div class="navbar-inner">
+        <div class="container">
+	        <div class="btn-group pull-left">
+				<button class="btn" data-ng-click="back()"><i class="icon-arrow-left"></i></button>
+				<button class="btn" data-ng-click="refresh()"><i class="icon-refresh"></i></button>
+				<a class="btn" href="#/{{settings.dashboard}}" data-ng-class="{active: selectedNav=='app'}" data-ng-click="selectedNav = 'app'"><i class="icon-dashboard"></i></a>
+			</div>
+			<ul class="nav">
+				<li>&nbsp;</li>
+                <li class="dropdown" data-ng-class="{active: selectedNav=='tender'}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tenders <b class="caret"></b></a>
+                    <ul class="dropdown-menu" data-ng-click="selectedNav = 'tender'">
+
+                		<li class="nav-header"			data-mg-show="settings.buyer">Buyer</li>
+                		<li><a href="#/tender/edit/0"	data-mg-show="settings.buyer">New Tender</a></li>
+                        <li><a href="#/tender/buyer" 	data-mg-show="settings.buyer">Buyer Panel<!--<span class="badge badge-inverse pull-right">10</span>--></a></li>
+                        <li><a href="#/tender/nda"		data-mg-show="settings.buyer">NDAs</a></li>
+                        <li class="divider"				data-mg-show="settings.buyer && settings.supplier"></li>
+                		<li class="nav-header"			data-mg-show="settings.supplier">Supplier</li>
+                		<li><a href="#/tender/search/" 	data-mg-show="settings.supplier">Search for Tenders</a></li>
+                		<li><a href="#/tender/daily/" 	data-mg-show="settings.supplier">New Tenders<!--<span class="badge badge-inverse pull-right">10</span>--></a></li>
+
+                		<li><a href="#/tender/supplier"	data-mg-show="settings.supplier">Supplier Panel</a></li>
+                    </ul>
+                </li>
+                <!--<li class="dropdown" if="settings.buyer">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Buyer <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+
+                    </ul>
+                </li>
+                <li class="dropdown" if="settings.supplier">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Supplier <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#/tender/supplier"	>Supplier Panel</a></li>
+                        <li><a href="#/tender/search/"	>Search for Tenders</a></li>
+
+                    </ul>
+                </li>-->
+                <li class="dropdown" data-ng-class="{active: selectedNav=='company'}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Company <b class="caret"></b></a>
+                    <ul class="dropdown-menu" data-ng-click="selectedNav = 'company'">
+                        <!--<li><a href="#/company/panel/"	>Control Panel</a></li>-->
+                        <li><a href="#/company/search/"	>Directory</a></li>
+                        <li><a href="#/company/view"	>Profile</a></li>
+                        <li><a href="#/company/follow"	>Following<!--<span class="badge badge-inverse pull-right">10</span>--></a></li>
+                        <li class="divider"></li>
+                        <li><a href="#/company/invite"	>Invite</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+			<ul class="nav pull-right">
+				<!--<li class="" id="loading" ><a href="#" rel="tooltip" title="first tooltip">( Loading... )</a></li>-->
+			    <!--<li><a href="#/app"><i class="icon-home"></i></a></li>-->
+			    <li class="dropdown" data-ng-show="settings.lang.options.length">
+			        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="flag-{{country_code}}"></i> {{language.substr(0,2)}}</a>
+			        <ul class="dropdown-menu">
+			        	<li data-ng-repeat="lang in settings.lang.options">
+			        		<a href="" data-ng-click="loadLanguage(lang)"><i class="flag-{{lang.substr(3,2)}}"></i> {{lang}}</a>
+			        	</li>
+			        </ul>
+			    </li>
+			    <li class="dropdown" data-ng-class="{active: selectedNav=='user'}">
+			        <a href="#" class="dropdown-toggle" data-ng-show="session.user.user_name" data-toggle="dropdown">{{session.user.user_name}} <b class="caret"></b></a>
+			        <a href="#" class="dropdown-toggle" data-ng-show="!session.user.user_name && session.user.user_name_first" data-toggle="dropdown">{{session.user.user_name_first}} <b class="caret"></b></a>
+			        <a href="#" class="dropdown-toggle" data-ng-hide="session.user.user_name || session.user.user_name_first" data-toggle="dropdown">{{session.user.user_email}} <b class="caret"></b></a>
+			        <ul class="dropdown-menu" data-ng-click="selectedNav = 'user'">
+			        	<!--<li><a href="#/user/mail"><i class="icon-envelope"></i> Mail<span class="badge badge-inverse pull-right">10</span></a></li>-->
+			        	<!--<li><a href="" data-ng-click="sync(0)"><i class="icon-refresh"></i> Sync Offline</a></li>-->
+			        	<!--<li><a href="#/account/settings"><i class="icon-random"></i> Change Password</a></li>-->
+			        	<!--<li><a href="#/inbox"><i class="icon-inbox"></i> Inbox<span class="badge pull-right">1</span></a></li>-->
+			        	<li><a href="#/follow"><i class="icon-group"></i> Follow</a></li>
+			        	<li><a href="#/invite"><i class="icon-share"></i> Invite</a></li>
+			        	<li><a href="#/account/user"><i class="icon-cogs"></i> User Settings</a></li>
+			        	<!--<li class="divider"></li>
+			    		<li class="nav-header">Page Controls</li>
+			    		<li><a href="" data-ng-click="back()"><i class="icon-arrow-left"></i> Back</a></li>
+			    		<li><a href="" data-ng-click="refresh()"><i class="icon-refresh"></i> Refresh</a></li>
+			        	<li><a href="" data-ng-click="zoom(1)"><i class="icon-zoom-in"></i> Zoom In</a></li>
+			            <li><a href="" data-ng-click="zoom(-1)"><i class="icon-zoom-out"></i> Zoom Out</a></li>
+			            <li><a href="" onclick="scroll(0,0)"><i class="icon-arrow-up"></i> Back To Top</a></li>-->
+			        </ul>
+			    </li>
+			    <li class="divider-vertical"></li>
+			    <li class="dropdown" data-ng-class="{active: selectedNav=='account'}">
+			        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-ng-click="selectedNav = 'account'">Account <b class="caret"></b></a>
+			        <ul class="dropdown-menu">
+			            <li><a href="#/account/company"><i class="icon-edit"></i> Edit Account</a></li>
+			            <!--<li><a href="#/billing"			><i class="icon-credit-card"></i> Billing</a></li>-->
+			            <!--<li><a href="#/api/"			>API</a></li>-->
+			            <li class="divider"></li>
+			            <li><a href="#/signout"><i class="icon-signout"></i> Sign Out</a></li>
+			            <li class="divider"></li>
+			            <!--<li><a href="#/help/faq"		><i class="icon-question-sign"></i> Help</a></li>-->
+			            <li><a href="#/contact"	><i class="icon-bullhorn"></i> Contact</a></li>
+			        </ul>
+			    </li>
+			</ul>
+        </div><!-- /container -->
+	</div>
+</div>

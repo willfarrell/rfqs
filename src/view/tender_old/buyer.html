@@ -1,0 +1,71 @@
+<ul class="breadcrumb">
+  <li>
+    Buyer <span class="divider">/</span>
+  </li>
+  <li class="active">Panel</li>
+</ul>
+
+<div class="row-fluid">
+    <div class="span8">
+	    <div class="alert alert-{{alert.type}}" data-ng-repeat="alert in alerts">
+	      <button class="close" data-dismiss="alert">&#215;</button>
+	      <strong>{{alert.heading}}</strong> {{alert.message}}
+	    </div>
+	
+	    <form class="form-search">
+	    	<input type="text" data-ng-model="search" class="search-query" placeholder="Search">
+	        <!--<select>
+	        	<option>Filter By: All</option>
+	            <option>1</option>
+	            <option>2</option>
+	            <option>3</option>
+	            <option>4</option>
+	            <option>5</option>
+	          </select>-->
+	        
+	        <a href="#/tender/edit/0" class="btn btn-primary pull-right"><i class="icon-plus"></i> New</a>
+	    </form>
+	    <ng-include src="'view/tender/part.list.html'"></ng-include>
+    </div>
+    
+    <div class="span4">
+	    <!--<h2>NDAs<button class="btn btn-primary pull-right"><i class="icon-plus-sign icon-white"></i> New</button></h2>
+	    <table class="table table-striped table-bordered">
+	      <tbody>
+	      
+	      <tr data-ng-repeat="nda in ndas | orderBy:'nda_create_date'">
+	        <td>
+	            <div class="btn-group pull-right">
+	                <a href="#/tender/view/{{tender.tender_ID}}" class="btn btn-primary"><i class="icon-eye-open icon-white"></i> View</a>
+	                <a href="#/tender/edit/{{tender.tender_ID}}" class="btn btn-primary"><i class="icon-edit icon-white"></i> Edit</a>
+	            </div>
+	            <b>{{nda.nda_name}}</b><br />{{nda.nda_create_date | date:'yyyy-MM-dd'}}
+	        </td>
+	      </tr>
+	      </tbody>
+	    </table>-->
+	    
+	    <div class="btn-group pull-right">
+	    	<button class="btn btn-primary" if="!hash" data-ng-click="regenHash(true)"><i class="icon-ok"></i> Enable</button>
+	    	<button class="btn btn-primary" if="hash" data-ng-click="regenHash(true)"><i class="icon-refresh"></i></button>
+	    	<button class="btn btn-primary" if="hash" data-ng-click="regenHash(false)"><i class="icon-remove"></i> Disable</button>
+	    </div>
+	    <h2>Site Widget</h2>
+	    <p>What to show your public tenders on your own website?</p>
+	    <ol>
+	    	<!--<li>Click the "Enable" button above.</li>-->
+	        <li>Copy the code snippet below.</li>
+	        <li>Paste the code onto your web site.</li>
+	        <li>That's it. You're done.</li>
+	    </ol>
+	    <div class="well" style="overflow:scroll">
+	    &lt;iframe src=&quot;https://rfqs.ca/widget#/{{hash}}/{{session.twitter}}&quot; width=&quot;100%&quot; height=&quot;100%&quot; style=&quot;border:0&quot;&gt;&lt;/iframe&gt;
+	    </div>
+	    
+	    <h2>Widget Theme</h2>
+	    <p>Customize your widget to match your website (to be built).</p>
+	    
+	    <h2>Widget Stats</h2>
+	    <p>None at this time (to be built).</p>
+    </div>
+</div>
